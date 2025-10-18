@@ -68,4 +68,22 @@ class CalculatorTest {
             calculator.calculate("//;\\n1;2;3")
         }
     }
+
+    @Test
+    fun `기본 구분자(쉼표) 로 문자열 분리`() {
+        var array = calculator.calculate("1,2,3")
+        assertEquals(0,array)
+    }
+
+    @Test
+    fun `기본 구분자(콤마) 로 문자열 분리`() {
+        var array = calculator.calculate("1:2:3")
+        assertEquals(0,array)
+    }
+
+    @Test
+    fun `기본 구분자(쉼표 + 콤마) 로 문자열 분리`() {
+        var array = calculator.calculate("1,2:3")
+        assertEquals(0,array)
+    }
 }

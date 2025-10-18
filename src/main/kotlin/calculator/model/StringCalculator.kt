@@ -3,6 +3,9 @@ package calculator.model
 const val PREFIX_CUSTOM_DELIMETER = "//"
 const val POSTFIX_CUSTOM_DELIMETER = "\n"
 const val FORMAT_ERROR_MESSAGE = "올바른 형식이 아닙니다."
+const val DEFAULT_DELIMETER_COMMA = ","
+const val DEFAULT_DELIMETER_COLON = ":"
+
 
 class StringCalculator {
     fun calculate(input: String?): Int {
@@ -15,6 +18,7 @@ class StringCalculator {
         }
 //        커스텀 구분자라면 형식 올바른지 확인하고 구분자 확인 후 구분자에 따라 배열 쪼개기
 //        기본 구분자라면 구분자에 따라 쪼개기
+        defaultArray(input)
         return 0
     }
 
@@ -30,5 +34,11 @@ class StringCalculator {
 //      자체적으로 IllegalArgumentException를 던짐
     private fun formatValidation(index: Int) {
         require(index != -1) { FORMAT_ERROR_MESSAGE }
+    }
+
+//    기본 구분자에 따른 문자열 분리
+    private fun defaultArray(input: String): List<String> {
+        val delimeterArray = arrayOf(DEFAULT_DELIMETER_COLON, DEFAULT_DELIMETER_COMMA)
+        return input.split(*delimeterArray)
     }
 }
