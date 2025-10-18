@@ -2,7 +2,7 @@ package calculator.model
 
 const val PREFIX_CUSTOM_DELIMETER = "//"
 const val POSTFIX_CUSTOM_DELIMETER = "\n"
-const val FORMAT_ERROR_MESSAGE = "올바른 형식이 아닙니다."
+const val FORMAT_ERROR_MESSAGE = "올바른 형식이 아닙니다. 다른 값을 입력해주세요."
 const val DEFAULT_DELIMETER_COMMA = ","
 const val DEFAULT_DELIMETER_COLON = ":"
 
@@ -31,7 +31,20 @@ class StringCalculator {
         return sumList(customArray)
     }
 
-//    커스텀 구분자 파악을 위한 인덱스 추출
+    private fun sumList(array: List<String>): Int {
+        parseStringToInt(array)
+    }
+
+    private fun parseStringToInt(array: List<String>): List<Int> {
+        var numbers = mutableListOf<Int>()
+        for (strNumber in array) {
+            val number = strNumber.toIntOrNull()
+            numbers.add(number)
+        }
+        return numbers
+    }
+
+    //    커스텀 구분자 파악을 위한 인덱스 추출
 //    '\n'보다 한 칸 앞에 위치해 있으므로
 //    만약 인덱스가 없어서 -1이라면 예외처리를 위해
     private fun findEndIndex(input: String): Int {
