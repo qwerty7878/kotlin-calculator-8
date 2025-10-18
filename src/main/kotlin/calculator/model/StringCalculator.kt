@@ -4,7 +4,7 @@ const val PREFIX_CUSTOM_DELIMETER = "//"
 const val POSTFIX_CUSTOM_DELIMETER = "\n"
 const val FORMAT_ERROR_MESSAGE = "올바른 형식이 아닙니다. 다른 값을 입력해주세요."
 const val MINUS_NUMBER_ERROR_MESSAGE = "음수입니다. 다른 값을 입력해주세요."
-const val NOT_NUMBER_ERROR_MESSAGE = "음수입니다. 다른 값을 입력해주세요."
+const val NOT_NUMBER_ERROR_MESSAGE = "숫자가 아닙니다. 다른 값을 입력해주세요."
 const val DEFAULT_DELIMETER_COMMA = ","
 const val DEFAULT_DELIMETER_COLON = ":"
 
@@ -34,7 +34,8 @@ class StringCalculator {
     }
 
     private fun sumList(array: List<String>): Int {
-        parseStringToInt(array)
+        val numbers = parseStringToInt(array)
+        return numbers.sum()
     }
 
     private fun parseStringToInt(array: List<String>): List<Int> {
@@ -47,7 +48,7 @@ class StringCalculator {
         return numbers
     }
 
-    //    커스텀 구분자 파악을 위한 인덱스 추출
+//    커스텀 구분자 파악을 위한 인덱스 추출
 //    '\n'보다 한 칸 앞에 위치해 있으므로
 //    만약 인덱스가 없어서 -1이라면 예외처리를 위해
     private fun findEndIndex(input: String): Int {
@@ -81,7 +82,8 @@ class StringCalculator {
         require(index != -1) { FORMAT_ERROR_MESSAGE }
     }
 
-    private fun numberValidation(number: Int?, strNumber: String?): Int{
+//    잘못된 입력 검증 검증
+    private fun numberValidation(number: Int?, strNumber: String): Int{
         require(number != null) { NOT_NUMBER_ERROR_MESSAGE }
         require(number >= 0) { MINUS_NUMBER_ERROR_MESSAGE }
         return number
