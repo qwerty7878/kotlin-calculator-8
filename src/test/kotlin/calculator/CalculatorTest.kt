@@ -63,27 +63,33 @@ class CalculatorTest {
     }
 
     @Test
-    fun `커스텀 구분자 형식이 올바르지 않은 경우 예외처리 통과`() {
-        assertThrows<IllegalArgumentException> {
-            calculator.calculate("//;\\n1;2;3")
-        }
+    fun `커스텀 구분자로 문자열 분리`() {
+        var array = calculator.calculate("//;\\n1;2;3")
+        assertEquals(6, array)
     }
 
     @Test
     fun `기본 구분자(쉼표) 로 문자열 분리`() {
         var array = calculator.calculate("1,2,3")
-        assertEquals(0,array)
+        assertEquals(6,array)
     }
 
     @Test
     fun `기본 구분자(콤마) 로 문자열 분리`() {
         var array = calculator.calculate("1:2:3")
-        assertEquals(0,array)
+        assertEquals(6,array)
     }
 
     @Test
     fun `기본 구분자(쉼표 + 콤마) 로 문자열 분리`() {
         var array = calculator.calculate("1,2:3")
-        assertEquals(0,array)
+        assertEquals(6,array)
+    }
+
+    @Test
+    fun `음수 입력 시 IllegalArgumentException 발생`() {
+        assertThrows<IllegalArgumentException> {
+            calculator.calculate("-1;2;3")
+        }
     }
 }
