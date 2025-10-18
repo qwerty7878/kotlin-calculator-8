@@ -34,7 +34,7 @@
 
 ### 4. 숫자 변환 및 검증
 - [x] 분리된 문자열을 정수로 변환
-- [ ] 잘못된 입력 검증
+- [x] 잘못된 입력 검증
     - 음수 입력 시 `IllegalArgumentException` 발생
     - 숫자가 아닌 값 입력 시 `IllegalArgumentException` 발생
 

@@ -3,6 +3,8 @@ package calculator.model
 const val PREFIX_CUSTOM_DELIMETER = "//"
 const val POSTFIX_CUSTOM_DELIMETER = "\n"
 const val FORMAT_ERROR_MESSAGE = "올바른 형식이 아닙니다. 다른 값을 입력해주세요."
+const val MINUS_NUMBER_ERROR_MESSAGE = "음수입니다. 다른 값을 입력해주세요."
+const val NOT_NUMBER_ERROR_MESSAGE = "음수입니다. 다른 값을 입력해주세요."
 const val DEFAULT_DELIMETER_COMMA = ","
 const val DEFAULT_DELIMETER_COLON = ":"
 
@@ -39,7 +41,8 @@ class StringCalculator {
         var numbers = mutableListOf<Int>()
         for (strNumber in array) {
             val number = strNumber.toIntOrNull()
-            numbers.add(number)
+            val validateNumber = numberValidation(number, strNumber)
+            numbers.add(validateNumber)
         }
         return numbers
     }
@@ -76,5 +79,11 @@ class StringCalculator {
 //      자체적으로 IllegalArgumentException를 던짐
     private fun formatValidation(index: Int) {
         require(index != -1) { FORMAT_ERROR_MESSAGE }
+    }
+
+    private fun numberValidation(number: Int?, strNumber: String?): Int{
+        require(number != null) { NOT_NUMBER_ERROR_MESSAGE }
+        require(number >= 0) { MINUS_NUMBER_ERROR_MESSAGE }
+        return number
     }
 }
