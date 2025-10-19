@@ -1,12 +1,12 @@
 package calculator
 
-import calculator.model.StringCalculator
+import calculator.model.Calculator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class CalculatorTest {
-    private val calculator = StringCalculator()
+    private val calculator = Calculator()
 
     @Test
     fun `빈 문자열 입력 시 0 반환`() {
